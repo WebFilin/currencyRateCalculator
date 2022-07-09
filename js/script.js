@@ -10,10 +10,9 @@ const curseValueRate = document.querySelector(
 // Получаем инпут
 const inputCurse = document.querySelector(".currency-body__currency-input");
 
-// Отрисовываем введенный в инпут курс 
+// Отрисовываем введенный в инпут курс
 const drowInputCurse = document.querySelector(".currency-body__view-rate");
 
-// ************
 //Основные валюты
 const baseCurrencyName = ["USD", "EUR", "GBP", "CNY", "JPY", "CHF"];
 
@@ -28,7 +27,6 @@ const arrRateCurrency = [];
 
 //   Массив кросс курсов валют
 const arrCrossRateCurrency = [];
-// ************
 
 // Глобальные переменные для курсов валют
 let inputValue = null;
@@ -36,7 +34,8 @@ let inputValue = null;
 // Переменные для кликов
 // По дефолту рубли
 let checkCurrencyInput = null;
-let checkCurrencyCross = null;
+let inputCurrencyCross = null;
+let rateCurrencyCross = null;
 
 // Получаем базу курсов валют
 async function getCurrencyData() {
@@ -72,7 +71,7 @@ function arrCurrency(crossCurrency, rateCurrency) {
   Object.entries(crossCurrency).map(([key, value]) => {
     arrCrossRateCurrency.push({
       countryCode: key,
-      currencyDay: value,
+      crossRate: value,
     });
   });
 
@@ -120,7 +119,9 @@ function drowItemsBaseCurrency() {
       "afterBegin",
       `<button  
       class="currency-body__input-btn" 
-      value=${elem.currencyDay}>
+      value=${elem.currencyDay}
+      data-cross=${elem.crossRate}
+      >
       ${elem.countryCode}
       </button>
      `
@@ -131,6 +132,7 @@ function drowItemsBaseCurrency() {
       `<button
       class="currency-body__rate-btn" 
       value=${elem.currencyDay}
+      data-cross=${elem.crossRate}
       >
       ${elem.countryCode}
       </button> 
@@ -138,41 +140,93 @@ function drowItemsBaseCurrency() {
     );
   });
 
+  console.log(arrCrossRateCurrency[34]);
+
   // Отображаемый по дефолту курс при загрузке
-  curseValueInput.innerHTML = `1 ${arrCrossRateCurrency[34].countryCode} = ${arrCrossRateCurrency[34].currencyDay} USD`;
+  curseValueInput.innerHTML = `1 ${arrCrossRateCurrency[34].countryCode} = ${arrCrossRateCurrency[34].crossRate} USD`;
 }
 
 //  Выбираем валюту для ввода
 function handlerClickBtnInput(checkBtn) {
   const txtValue = checkBtn.target.innerText;
   const valueRate = checkBtn.target.value;
+  const cross = checkBtn.target.dataset.cross;
 
+  checkBtn.target.classList.add("input-btn_active");
+
+  //   Выводим значение для кросскурсов
+  inputCurrencyCross = cross;
+
+  //   Переключаем значения курса валют при клике
   checkCurrencyInput = valueRate;
 
+  //   Пересчитываем курс в зависимости от выбраного значения
+  if (inputValue !== null) {
+    drowInputCurse.innerHTML = Math.round(checkCurrencyInput * inputValue);
+  }
+
   // Вставляем строчку с курсом в виджет ввода
-  curseValueInput.innerHTML = `1 ${txtValue} = ${valueRate} RUB `;
+
+  console.log(11);
+
+  if (txtValue === "RUB") {
+    curseValueInput.innerHTML = null;
+  } else {
+    curseValueInput.innerHTML = `1 ${txtValue} = ${valueRate} RUB `;
+  }
+
+  //   Персчет кросскурсов
+  crossCurrency();
 }
 
 //    Выбираем валюту для кросскурса
 function handlerClickBtnRate(checkBtn) {
   const txtValue = checkBtn.target.innerText;
   const valueRate = checkBtn.target.value;
+  const cross = checkBtn.target.dataset.cross;
+
+  //   Выводим значение для кросскурсов
+  rateCurrencyCross = cross;
+
+  checkBtn.target.classList.add("rate-btn_active");
 
   // Вставляем строчку с курсом в виджет кросскурса
-  curseValueRate.innerHTML = ` 1 ${txtValue} = ${valueRate} `;
+  if (txtValue === "RUB") {
+    curseValueInput.innerHTML = null;
+  } else {
+    curseValueRate.innerHTML = ` 1 ${txtValue} = ${valueRate} `;
+  }
+
+  //   Персчет кросскурсов
+  crossCurrency();
 }
 
 // Обрабтываем ввод инпута, проверям что вводят только числа
 function handlerInput(value) {
-  console.log(arrCrossRateCurrency[34]);
   if (!isNaN(parseFloat(value)) && isFinite(value)) {
     inputValue = value;
 
     if (checkCurrencyInput === null) {
       checkCurrencyInput = arrCrossRateCurrency[34].currencyDay;
     }
+    drowInputCurse.innerHTML = Math.round(checkCurrencyInput * value);
+  }
 
-    console.log(checkCurrencyInput * value);
+  //   Если инпут пуст то удаляем вывод курса
+  if (value.trim().length === 0) {
+    drowInputCurse.innerHTML = null;
+  }
+
+  //   Персчет кросскурсов
+  crossCurrency();
+}
+
+// Обрабатываем расчет кросскурса валютных пар
+function crossCurrency() {
+  let crossCurrency = (rateCurrencyCross / inputCurrencyCross) * inputValue;
+
+  if (inputValue > 0) {
+    drowInputCurse.innerHTML = Math.round(crossCurrency);
   }
 }
 

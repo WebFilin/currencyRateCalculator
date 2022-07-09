@@ -94,7 +94,6 @@ h1, h2, h3, h4, h5, h6 {
 .currency-body {
   width: 50vw;
   height: auto;
-  padding: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -127,6 +126,19 @@ h1, h2, h3, h4, h5, h6 {
           align-items: center;
 }
 
+.currency-body__wrapper-currency-rate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .currency-body__wrapper-items {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -146,6 +158,10 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
+.input-btn_active {
+  background-color: #20c720;
+}
+
 .currency-body__rate-btn {
   padding: 10px 15px;
   border: 1px solid grey;
@@ -153,10 +169,15 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
+.rate-btn_active {
+  background-color: #20c720;
+}
+
 .currency-body__currency-input {
   margin: 10px;
   width: 100%;
   font-size: 2em;
+  padding-left: 10px;
   border: 1px solid grey;
 }
 
@@ -174,9 +195,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .currency-body__view-rate {
   margin: 10px 0px;
-  height: 2.5em;
-  width: 100%;
+  padding-left: 10px;
   border: 1px solid grey;
+  font-size: 2em;
+  height: 36px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .currency-body__currency-curse-input {

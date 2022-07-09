@@ -15,12 +15,9 @@ $heightTxt: 2em;
 .currency-body {
   width: 50vw;
   height: auto;
-  padding: 10px;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-
-  //   background-color: greenyellow;
 }
 
 .currency-body__arrow-change {
@@ -36,6 +33,13 @@ $heightTxt: 2em;
   align-items: center;
 }
 
+.currency-body__wrapper-currency-rate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // align-items: center;
+}
+
 .currency-body__wrapper-items {
   display: flex;
   justify-content: center;
@@ -49,6 +53,10 @@ $heightTxt: 2em;
   cursor: pointer;
 }
 
+.input-btn_active {
+  background-color: rgb(32, 199, 32);
+}
+
 .currency-body__rate-btn {
   padding: 10px 15px;
   border: 1px solid grey;
@@ -56,11 +64,15 @@ $heightTxt: 2em;
   cursor: pointer;
 }
 
+.rate-btn_active{
+   background-color: rgb(32, 199, 32);
+}
+
 .currency-body__currency-input {
   margin: 10px;
   width: 100%;
   font-size: $heightTxt;
-
+  padding-left: 10px;
   border: 1px solid grey;
 }
 
@@ -69,11 +81,16 @@ $heightTxt: 2em;
   justify-content: center;
   align-items: center;
 }
+
 .currency-body__view-rate {
   margin: 10px 0px;
-  height: $heightTxt + 0.5;
-  width: 100%;
+  padding-left: 10px;
   border: 1px solid grey;
+  font-size: $heightTxt;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
 }
 
 .currency-body__currency-curse-input {
