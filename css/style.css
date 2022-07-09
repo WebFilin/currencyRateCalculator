@@ -104,12 +104,6 @@ h1, h2, h3, h4, h5, h6 {
           align-items: flex-start;
 }
 
-.currency-body__arrow-change {
-  width: 10%;
-  height: 100%;
-  border: 2px solid red;
-}
-
 .currency-body__wrapper-currency-value {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -158,24 +152,21 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
-.input-btn_active {
-  background-color: #20c720;
-}
-
 .currency-body__rate-btn {
+  width: 100%;
+  height: 100%;
   padding: 10px 15px;
   border: 1px solid grey;
-  background-color: white;
+  background: white;
   cursor: pointer;
 }
 
-.rate-btn_active {
-  background-color: #20c720;
+.btn_active {
+  background: greenyellow;
 }
 
 .currency-body__currency-input {
   margin: 10px;
-  width: 100%;
   font-size: 2em;
   padding-left: 10px;
   border: 1px solid grey;

@@ -31,9 +31,10 @@ const arrCrossRateCurrency = [];
 // Глобальные переменные для курсов валют
 let inputValue = null;
 
-// Переменные для кликов
-// По дефолту доллары
-// let checkCurrencyInput = null;
+// Переменнные кросс курсов
+let rateCurrencyCross = null;
+let inputCurrencyCross = null;
+let txtCurrencyCross = "";
 
 // Получаем базу курсов валют
 async function getCurrencyData() {
@@ -146,8 +147,10 @@ function handlerClickBtnInput(checkBtn) {
   const txtValue = checkBtn.target.innerText;
   const valueRate = checkBtn.target.value;
   const cross = checkBtn.target.dataset.cross;
+  let btnArr = document.querySelectorAll(".currency-body__input-btn");
 
-  //   checkBtn.target.classList.add("input-btn_active");
+  //   Передаем кросс курс
+  inputCurrencyCross = cross;
 
   // Вставляем строчку с курсом в виджет ввода
   if (txtValue === "RUB") {
@@ -155,26 +158,39 @@ function handlerClickBtnInput(checkBtn) {
   } else {
     curseValueInput.innerHTML = `1 ${txtValue} = ${valueRate} RUB `;
   }
+
+  crossCurrency();
+
+  drowCurrencyPair(txtValue, cross);
+
+  removeClassBtn(btnArr);
+  checkBtn.target.classList.add("btn_active");
 }
 
 //    Выбираем валюту для кросскурса
 function handlerClickBtnRate(checkBtn) {
   const txtValue = checkBtn.target.innerText;
   const valueRate = checkBtn.target.value;
+  const cross = checkBtn.target.dataset.cross;
+  let btnArr = document.querySelectorAll(".currency-body__rate-btn");
 
-  //   checkBtn.target.classList.add("rate-btn_active");
-
+  //   Выводим кросс курс
+  rateCurrencyCross = cross;
+  txtCurrencyCross = txtValue;
   //  Пересчитываем курс в зависимости от выбраного значения
   if (inputValue !== null) {
     drowInputCurse.innerHTML = Math.round(valueRate * inputValue);
   }
 
   // Вставляем строчку с курсом в виджет кросскурса
-  if (txtValue === "RUB") {
-    curseValueInput.innerHTML = inputValue;
-  } else {
+  if (inputCurrencyCross === null) {
     curseValueRate.innerHTML = `1 ${txtValue} = ${valueRate} RUB `;
   }
+
+  crossCurrency();
+
+  removeClassBtn(btnArr);
+  checkBtn.target.classList.add("btn_active");
 }
 
 // Обрабтываем ввод инпута, проверям что вводят только числа
@@ -194,9 +210,29 @@ function handlerInput(value) {
 function crossCurrency() {
   let crossCurrency = (rateCurrencyCross / inputCurrencyCross) * inputValue;
 
-  if (inputValue > 0) {
-    drowInputCurse.innerHTML = Math.round(crossCurrency);
+  if (
+    isFinite(crossCurrency) &&
+    isFinite(rateCurrencyCross) &&
+    isFinite(inputCurrencyCross)
+  ) {
+    drowInputCurse.innerHTML = ` ${Math.round(
+      crossCurrency
+    )} ${txtCurrencyCross}`;
   }
+}
+
+// Выводим значение кросс курса отностиельно доллара
+function drowCurrencyPair(txtValue, cross) {
+  curseValueRate.innerHTML = `1 USD = ${cross} ${txtValue}`;
+}
+
+// Очищаем стили кнопок при клике
+function removeClassBtn(btn) {
+  let btnArr = Array.from(btn);
+
+  btnArr.forEach((elem) => {
+    elem.classList.remove("btn_active");
+  });
 }
 
 rateItemsInput.addEventListener("click", (click) =>
