@@ -1,0 +1,39 @@
+@import "zerostyle.scss";
+
+.wrapper-all {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.currency-body {
+  width: 50vw;
+}
+.currency-body__exchange-wrapper {
+  width: 100%;
+
+  background-color: yellowgreen;
+  padding: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.currency-body__display-currency {
+  width: 100%;
+  height: auto;
+  border: 2px solid red;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.display-currency__items {
+  color: green;
+  text-align: center;
+  padding: 10px;
+}
