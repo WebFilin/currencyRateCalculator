@@ -1,3 +1,7 @@
+const rateItemsValue = document.querySelector(".currency-body__wrapper-items");
+
+const rateItemsRate = document.querySelector(".currency-body__wrapper-rate");
+
 //Названия основные валюты
 const baseCurrencyName = ["USD", "EUR", "GBP", "CNY", "JPY", "CHF"];
 
@@ -73,7 +77,43 @@ function filterCurrency() {
     }
   });
 
-  console.log(arrBaseCurrency);
+  drowItemsBaseCurrency();
 }
+
+// Отрисовываем базовые валюты для приложения
+function drowItemsBaseCurrency() {
+  let arrDrow = [
+    arrBaseCurrency[5],
+    arrBaseCurrency[4],
+    arrBaseCurrency[3],
+    arrBaseCurrency[0],
+    arrBaseCurrency[2],
+    arrBaseCurrency[1],
+  ];
+
+  arrDrow.map((elem) => {
+    rateItemsValue.insertAdjacentHTML(
+      "afterBegin",
+      `<button  
+      class="currency-body__items-btn" 
+      value=${elem.currencyDay}>
+      ${elem.countryCode}
+      </button>
+     `
+    );
+
+    rateItemsRate.insertAdjacentHTML(
+      "afterBegin",
+      `<div class="currency-body__items">
+      <p>${elem.countryCode}</p>
+      <p> ${elem.currencyDay}</p>
+      </div>`
+    );
+  });
+}
+
+rateItemsValue.addEventListener("click", (event) => {
+  console.log(event.target.value);
+});
 
 getCurrencyData();
