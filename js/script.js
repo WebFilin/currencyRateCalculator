@@ -13,6 +13,12 @@ const inputCurse = document.querySelector(".currency-body__currency-input");
 // Отрисовываем введенный в инпут курс
 const drowInputCurse = document.querySelector(".currency-body__view-rate");
 
+// Списко всех валют
+const btnAllCurses = document.querySelector(".currency-body__all-currency-btn");
+const drowAllCurrency = document.querySelector(
+  ".currency-body__all-currency-wrapper"
+);
+
 //Основные валюты
 const baseCurrencyName = ["USD", "EUR", "GBP", "CNY", "JPY", "CHF"];
 
@@ -96,7 +102,6 @@ function filterCurrency() {
       arrBaseCurrency.push(elem);
     }
   });
-
   drowItemsBaseCurrency();
 }
 
@@ -119,6 +124,7 @@ function drowItemsBaseCurrency() {
       class="currency-body__input-btn" 
       value=${elem.currencyDay}
       data-cross=${elem.crossRate}
+      data-tooltip="${elem.countryName}"
       >
       ${elem.countryCode}
       </button>
@@ -131,6 +137,7 @@ function drowItemsBaseCurrency() {
       class="currency-body__rate-btn" 
       value=${elem.currencyDay}
       data-cross=${elem.crossRate}
+      data-tooltip= "${elem.countryName}"
       >
       ${elem.countryCode}
       </button> 
@@ -143,7 +150,7 @@ function drowItemsBaseCurrency() {
 }
 
 //  Выбираем валюту для ввода
-function handlerClickBtnInput(checkBtn) {
+function handlerBtnInput(checkBtn) {
   const txtValue = checkBtn.target.innerText;
   const valueRate = checkBtn.target.value;
   const cross = checkBtn.target.dataset.cross;
@@ -160,15 +167,14 @@ function handlerClickBtnInput(checkBtn) {
   }
 
   crossCurrency();
-
   drowCurrencyPair(txtValue, cross);
-
   removeClassBtn(btnArr);
+
   checkBtn.target.classList.add("btn_active");
 }
 
 //    Выбираем валюту для кросскурса
-function handlerClickBtnRate(checkBtn) {
+function handlerBtnRate(checkBtn) {
   const txtValue = checkBtn.target.innerText;
   const valueRate = checkBtn.target.value;
   const cross = checkBtn.target.dataset.cross;
@@ -188,8 +194,8 @@ function handlerClickBtnRate(checkBtn) {
   }
 
   crossCurrency();
-
   removeClassBtn(btnArr);
+
   checkBtn.target.classList.add("btn_active");
 }
 
@@ -221,6 +227,31 @@ function crossCurrency() {
   }
 }
 
+// Ображаем все курсы таблицей
+
+function allCurrency(elemTarg) {
+  drowAllCurrency.innerHTML = null;
+
+  drowAllCurrency.classList.add("all-currency-active");
+
+ 
+
+  arrAllCurrency.map((elem) => {
+    drowAllCurrency.insertAdjacentHTML(
+      "afterBegin",
+      `<div
+      class="currency-body__all-items" 
+      data-tooltip-all="${elem.countryName}"
+      >
+      ${elem.countryCode} : ${elem.currencyDay} RUB
+      </div> 
+`
+    );
+  });
+}
+
+console.log(arrAllCurrency);
+
 // Выводим значение кросс курса отностиельно доллара
 function drowCurrencyPair(txtValue, cross) {
   curseValueRate.innerHTML = `1 USD = ${cross} ${txtValue}`;
@@ -235,13 +266,13 @@ function removeClassBtn(btn) {
   });
 }
 
-rateItemsInput.addEventListener("click", (click) =>
-  handlerClickBtnInput(click)
-);
-rateItemsRate.addEventListener("click", (click) => handlerClickBtnRate(click));
+rateItemsInput.addEventListener("click", (click) => handlerBtnInput(click));
+rateItemsRate.addEventListener("click", (click) => handlerBtnRate(click));
 
 inputCurse.addEventListener("input", (input) => {
   handlerInput(input.target.value);
 });
+
+btnAllCurses.addEventListener("click", (click) => allCurrency(click));
 
 getCurrencyData();

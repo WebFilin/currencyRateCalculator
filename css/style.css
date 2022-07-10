@@ -72,6 +72,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /*--------------------*/
 .wrapper-all {
+  position: relative;
   width: 100vw;
   height: 100vh;
   -webkit-box-sizing: border-box;
@@ -92,6 +93,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .currency-body {
+  position: relative;
   width: 50vw;
   height: auto;
   display: -webkit-box;
@@ -102,6 +104,8 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .currency-body__wrapper-currency-value {
@@ -115,9 +119,10 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+}
+
+.currency-body__wrapper-currency-value h2 {
+  padding: 5px 0px;
 }
 
 .currency-body__wrapper-currency-rate {
@@ -133,6 +138,10 @@ h1, h2, h3, h4, h5, h6 {
           justify-content: center;
 }
 
+.currency-body__wrapper-currency-rate h2 {
+  padding: 5px 0px;
+}
+
 .currency-body__wrapper-items {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -146,30 +155,42 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .currency-body__input-btn {
+  position: relative;
   padding: 10px 15px;
   border: 1px solid grey;
   background-color: white;
   cursor: pointer;
 }
 
+.currency-body__input-btn:hover {
+  background: #3989c9;
+  color: #fff;
+}
+
 .currency-body__rate-btn {
-  width: 100%;
-  height: 100%;
+  position: relative;
   padding: 10px 15px;
   border: 1px solid grey;
   background: white;
   cursor: pointer;
 }
 
+.currency-body__rate-btn:hover {
+  background: #3989c9;
+  color: #fff;
+}
+
 .btn_active {
-  background: greenyellow;
+  background: #3989c9;
+  color: #fff;
 }
 
 .currency-body__currency-input {
-  margin: 10px;
+  position: relative;
+  margin: 10px 0px;
   font-size: 2em;
-  padding-left: 10px;
   border: 1px solid grey;
+  padding: 0px 5px;
 }
 
 .currency-body__wrapper-rate {
@@ -186,16 +207,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .currency-body__view-rate {
   margin: 10px 0px;
-  padding-left: 10px;
   border: 1px solid grey;
   font-size: 2em;
-  height: 36px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  padding: 3px 5px;
+  min-height: 36px;
 }
 
 .currency-body__currency-curse-input {
@@ -216,4 +231,96 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+}
+
+.currency-body__all-currency-btn {
+  position: absolute;
+  padding: 10px 10px;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.currency-body__all-currency-btn:hover {
+  background: #3989c9;
+  color: #fff;
+}
+
+.currency-body__all-currency-wrapper {
+  position: absolute;
+  visibility: hidden;
+  width: 50vw;
+  height: 50vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background: #fff;
+  z-index: 1;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.all-currency-active {
+  visibility: visible;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: 500ms;
+  transition: 500ms;
+}
+
+.currency-body__all-items {
+  padding: 10px 10px;
+  border: 1px solid gray;
+  margin: 5px 5px;
+  cursor: pointer;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  width: 200px;
+  left: -100%;
+  top: 0;
+  background: #3989c9;
+  color: #fff;
+  padding: 0.5em;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+  top: -50px;
+}
+
+[data-tooltip-all]::after {
+  content: attr(data-tooltip-all);
+  position: absolute;
+  width: 200px;
+  top: 0;
+  background: #3989c9;
+  color: #fff;
+  padding: 0.5em;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+[data-tooltip-all]:hover::after {
+  opacity: 1;
+  top: -50px;
 }
