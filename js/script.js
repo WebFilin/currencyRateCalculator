@@ -227,8 +227,7 @@ function crossCurrency() {
   }
 }
 
-// Ображаем все курсы таблицей
-
+// Ображаем все курсы таблицей в попапе
 function allCurrency(click) {
   drowAllCurrency.innerHTML = null;
 
@@ -255,8 +254,6 @@ function allCurrency(click) {
     );
   });
 }
-
-console.log(arrAllCurrency);
 
 // Выводим значение кросс курса отностиельно доллара
 function drowCurrencyPair(txtValue, cross) {

@@ -119,6 +119,9 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding: 10px 10px;
+  -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .currency-body__wrapper-currency-value h2 {
@@ -136,6 +139,9 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding: 10px 10px;
+  -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .currency-body__wrapper-currency-rate h2 {
@@ -160,6 +166,8 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid grey;
   background-color: white;
   cursor: pointer;
+  -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .currency-body__input-btn:hover {
@@ -173,6 +181,8 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid grey;
   background: white;
   cursor: pointer;
+  -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .currency-body__rate-btn:hover {
@@ -235,13 +245,24 @@ h1, h2, h3, h4, h5, h6 {
 
 .currency-body__all-currency-btn {
   padding: 10px 10px;
+  margin-top: 10px;
   border: 1px solid grey;
   cursor: pointer;
+  -webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+          box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .currency-body__all-currency-btn:hover {
   background: #3989c9;
   color: #fff;
+}
+
+.currency-body__arrow {
+  width: 15%;
+  height: 90%;
+  background-image: url("../../img/icons/free-icon-exchange-1372789.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .currency-body__all-currency-wrapper {
@@ -266,6 +287,8 @@ h1, h2, h3, h4, h5, h6 {
           transform: scale(0);
   -webkit-transition: 300ms;
   transition: 300ms;
+  -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .all-currency-active {
@@ -277,10 +300,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .currency-body__all-items {
+  position: relative;
   padding: 10px 10px;
   border: 1px solid gray;
   margin: 5px 5px;
   cursor: pointer;
+}
+
+.currency-body__all-items:hover {
+  background: #3989c9;
+  color: #fff;
 }
 
 [data-tooltip]::after {
@@ -309,6 +338,7 @@ h1, h2, h3, h4, h5, h6 {
   content: attr(data-tooltip-all);
   position: absolute;
   width: 200px;
+  left: 0%;
   top: 0;
   background: #3989c9;
   color: #fff;
@@ -324,4 +354,44 @@ h1, h2, h3, h4, h5, h6 {
 [data-tooltip-all]:hover::after {
   opacity: 1;
   top: -50px;
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .currency-body__all-currency-wrapper {
+    width: 100vw;
+    height: 90vh;
+  }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+  .currency-body__all-currency-wrapper {
+    width: 100vw;
+    height: 90vh;
+  }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+  .currency-body__all-currency-wrapper {
+    width: 100vw;
+    height: 90vh;
+  }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+  .currency-body__all-currency-wrapper {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+/* Iphone 5 */
+@media (max-width: 320px) {
+  .currency-body__all-currency-wrapper {
+    width: 100vw;
+    height: 100vh;
+  }
 }
