@@ -229,12 +229,18 @@ function crossCurrency() {
 
 // Ображаем все курсы таблицей
 
-function allCurrency(elemTarg) {
+function allCurrency(click) {
   drowAllCurrency.innerHTML = null;
 
-  drowAllCurrency.classList.add("all-currency-active");
+  const targetClick =
+    click.composedPath().includes(btnAllCurses) ||
+    click.composedPath().includes(drowAllCurrency);
 
- 
+  if (!targetClick) {
+    drowAllCurrency.classList.remove("all-currency-active");
+  } else {
+    drowAllCurrency.classList.add("all-currency-active");
+  }
 
   arrAllCurrency.map((elem) => {
     drowAllCurrency.insertAdjacentHTML(
@@ -273,6 +279,6 @@ inputCurse.addEventListener("input", (input) => {
   handlerInput(input.target.value);
 });
 
-btnAllCurses.addEventListener("click", (click) => allCurrency(click));
+document.addEventListener("click", (click) => allCurrency(click));
 
 getCurrencyData();

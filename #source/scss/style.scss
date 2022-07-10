@@ -115,7 +115,6 @@ $heightTxt: 2em;
 }
 
 .currency-body__all-currency-btn {
-  position: absolute;
   padding: 10px 10px;
   border: 1px solid grey;
   cursor: pointer;
@@ -137,6 +136,7 @@ $heightTxt: 2em;
   background: #fff;
   z-index: 1;
   transform: scale(0);
+  transition: 300ms;
 }
 
 .all-currency-active {
