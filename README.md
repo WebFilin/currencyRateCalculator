@@ -1,4 +1,3 @@
-![ALT](https://github.com/WebFilin/currencyRateCalculator/blob/main/img/screenShot.png)
 # Калькулятор курсов валют
 -JS
 -SCSS
