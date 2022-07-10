@@ -170,6 +170,7 @@ function handlerBtnInput(checkBtn) {
   removeClassBtn(btnArr);
 
   checkBtn.target.classList.add("btn_active");
+  rateItemsInput.removeEventListener("click", handlerBtnInput);
 }
 
 //    Выбираем валюту для кросскурса
@@ -196,6 +197,7 @@ function handlerBtnRate(checkBtn) {
   removeClassBtn(btnArr);
 
   checkBtn.target.classList.add("btn_active");
+  rateItemsRate.removeEventListener("click", handlerBtnRate);
 }
 
 // Обрабтываем ввод инпута, проверям что вводят только числа
@@ -209,6 +211,7 @@ function handlerInput(value) {
   if (value.trim().length === 0) {
     drowInputCurse.innerHTML = null;
   }
+  inputCurse.removeEventListener("input", handlerInput);
 }
 
 // Обрабатываем расчет кросскурса валютных пар
@@ -252,14 +255,16 @@ function allCurrency(click) {
 `
     );
   });
+
+  document.removeEventListener("click", allCurrency);
 }
 
+// Отображаемый курс при загрузке в зависимости от браузера
 function getLanguage() {
   // Получаем язык браузера
   let language = navigator.language || navigator.userLanguage;
   let languageFistTwo = language.substr(0, 2);
 
-  // Отображаемый курс при загрузке в зависимости от браузера
   switch (languageFistTwo) {
     // Доллар рубль
     case "ru":
