@@ -145,34 +145,7 @@ function drowItemsBaseCurrency() {
     );
   });
 
-  // Получаем язык браузера
-  let language = navigator.language || navigator.userLanguage;
-  let languageFistTwo = language.substr(0, 2);
-
-  // Отображаемый курс при загрузке в зависимости от браузера
-  switch (languageFistTwo) {
-    // Доллар рубль
-    case "ru":
-      curseValueInput.innerHTML = `1 ${arrCrossRateCurrency[34].countryCode} = ${arrCrossRateCurrency[34].crossRate} USD`;
-      break;
-    // Рубль доллар
-    case "en":
-      curseValueInput.innerHTML = `1 ${arrCrossRateCurrency[10].countryCode} = ${arrCrossRateCurrency[10].crossRate} RUB`;
-      break;
-    // Юань рубль
-    case "zh":
-      curseValueInput.innerHTML = `1 ${arrCrossRateCurrency[16].countryCode} = ${arrCrossRateCurrency[16].crossRate} RUB`;
-      break;
-    // Йена рубль
-    case "jp":
-      curseValueInput.innerHTML = `1 ${arrCrossRateCurrency[33].countryCode} = ${arrCrossRateCurrency[33].crossRate} RUB`;
-      break;
-
-    default:
-      break;
-  }
-
-  console.log(arrCrossRateCurrency);
+  getLanguage();
 }
 
 //  Выбираем валюту для ввода
@@ -279,6 +252,35 @@ function allCurrency(click) {
 `
     );
   });
+}
+
+function getLanguage() {
+  // Получаем язык браузера
+  let language = navigator.language || navigator.userLanguage;
+  let languageFistTwo = language.substr(0, 2);
+
+  // Отображаемый курс при загрузке в зависимости от браузера
+  switch (languageFistTwo) {
+    // Доллар рубль
+    case "ru":
+      curseValueInput.innerHTML = `1 ${arrCrossRateCurrency[34].countryCode} = ${arrCrossRateCurrency[34].crossRate} USD`;
+      break;
+    // Рубль доллар
+    case "en":
+      curseValueInput.innerHTML = `1 ${arrCrossRateCurrency[10].countryCode} = ${arrCrossRateCurrency[10].crossRate} RUB`;
+      break;
+    // Юань рубль
+    case "zh":
+      curseValueInput.innerHTML = `1 ${arrCrossRateCurrency[16].countryCode} = ${arrCrossRateCurrency[16].crossRate} RUB`;
+      break;
+    // Йена рубль
+    case "jp":
+      curseValueInput.innerHTML = `1 ${arrCrossRateCurrency[33].countryCode} = ${arrCrossRateCurrency[33].crossRate} RUB`;
+      break;
+
+    default:
+      break;
+  }
 }
 
 // Выводим значение кросс курса отностиельно доллара
