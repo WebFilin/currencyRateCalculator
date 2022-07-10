@@ -80,10 +80,6 @@ h1, h2, h3, h4, h5, h6 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -94,21 +90,26 @@ h1, h2, h3, h4, h5, h6 {
 
 .currency-body {
   position: relative;
-  width: 50vw;
+  max-width: 50vw;
   height: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 
 .currency-body__wrapper-currency-value {
+  min-height: 140px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -119,7 +120,8 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 10px 10px;
+  margin: 10px 10px;
+  padding: 5px 10px;
   -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
           box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
 }
@@ -129,6 +131,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .currency-body__wrapper-currency-rate {
+  min-height: 140px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -139,7 +142,8 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 10px 10px;
+  margin: 10px 10px;
+  padding: 5px 10px;
   -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
           box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
 }
@@ -250,19 +254,13 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   -webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
           box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+  bottom: 0px;
+  left: 0px;
 }
 
 .currency-body__all-currency-btn:hover {
   background: #3989c9;
   color: #fff;
-}
-
-.currency-body__arrow {
-  width: 15%;
-  height: 90%;
-  background-image: url("../../img/icons/free-icon-exchange-1372789.png");
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 
 .currency-body__all-currency-wrapper {
@@ -315,7 +313,7 @@ h1, h2, h3, h4, h5, h6 {
 [data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
-  width: 200px;
+  padding: 5px 5px;
   left: -100%;
   top: 0;
   background: #3989c9;
@@ -337,7 +335,7 @@ h1, h2, h3, h4, h5, h6 {
 [data-tooltip-all]::after {
   content: attr(data-tooltip-all);
   position: absolute;
-  width: 200px;
+  padding: 5px 5px;
   left: 0%;
   top: 0;
   background: #3989c9;
@@ -356,6 +354,7 @@ h1, h2, h3, h4, h5, h6 {
   top: -50px;
 }
 
+/* Large desktops and laptops */
 /* Landscape tablets and medium desktops */
 @media (min-width: 992px) and (max-width: 1199px) {
   .currency-body__all-currency-wrapper {
@@ -378,11 +377,19 @@ h1, h2, h3, h4, h5, h6 {
     width: 100vw;
     height: 90vh;
   }
+  .currency-body {
+    width: 100vw;
+    height: 100vh;
+  }
 }
 
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
   .currency-body__all-currency-wrapper {
+    width: 100vw;
+    height: 100vh;
+  }
+  .currency-body {
     width: 100vw;
     height: 100vh;
   }

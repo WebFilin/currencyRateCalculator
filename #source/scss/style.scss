@@ -1,4 +1,4 @@
-@import "zerostyle.scss";
+@import "_zerostyle.scss";
 
 $heightTxt: 2em;
 
@@ -8,26 +8,29 @@ $heightTxt: 2em;
   height: 100vh;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .currency-body {
   position: relative;
-  width: 50vw;
+  max-width: 50vw;
   height: auto;
+
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
 }
 
 .currency-body__wrapper-currency-value {
+  min-height: 140px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 10px 10px;
+  margin: 10px 10px;
+  padding: 5px 10px;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
   h2 {
     padding: 5px 0px;
@@ -35,10 +38,12 @@ $heightTxt: 2em;
 }
 
 .currency-body__wrapper-currency-rate {
+  min-height: 140px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 10px 10px;
+  margin: 10px 10px;
+  padding: 5px 10px;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
   h2 {
     padding: 5px 0px;
@@ -122,18 +127,13 @@ $heightTxt: 2em;
   border: 1px solid grey;
   cursor: pointer;
   box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+
+  bottom: 0px;
+  left: 0px;
   &:hover {
     background: #3989c9;
     color: #fff;
   }
-}
-
-.currency-body__arrow {
-  width: 15%;
-  height: 90%;
-  background-image: url("../../img/icons/free-icon-exchange-1372789.png");
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 
 .currency-body__all-currency-wrapper {
@@ -173,7 +173,7 @@ $heightTxt: 2em;
 [data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
-  width: 200px;
+  padding: 5px 5px;
   left: -100%;
   top: 0;
   background: #3989c9;
@@ -192,7 +192,7 @@ $heightTxt: 2em;
 [data-tooltip-all]::after {
   content: attr(data-tooltip-all);
   position: absolute;
-  width: 200px;
+  padding: 5px 5px;
   left: 0%;
   top: 0;
   background: #3989c9;
@@ -207,6 +207,10 @@ $heightTxt: 2em;
 [data-tooltip-all]:hover::after {
   opacity: 1;
   top: -50px;
+}
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
 }
 
 /* Landscape tablets and medium desktops */
@@ -229,10 +233,20 @@ $heightTxt: 2em;
     width: 100vw;
     height: 90vh;
   }
+
+  .currency-body {
+    width: 100vw;
+    height: 100vh;
+  }
 }
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
   .currency-body__all-currency-wrapper {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .currency-body {
     width: 100vw;
     height: 100vh;
   }
